@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Found Item - VJ Bus</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header class="vj-header">
+        <div class="container">
+            <h1><i class="bi bi-box-seam"></i> Report Found Item</h1>
+            <p>Report an item you found inside a VJ College Bus. Sharing details helps students find their missing items quickly.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <a href="/" class="btn-vj-secondary"><i class="bi bi-arrow-left"></i> Back to Homepage</a>
+                </div>
+                
+                <div class="form-card">
+                    <form id="report-found-form" enctype="multipart/form-data">
+                        
+                        <h4 class="mb-4 text-primary border-bottom pb-2"><i class="bi bi-info-circle"></i> Item Details</h4>
+                        
+                        <div class="row">
+                            <!-- Item Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Item Name *</label>
+                                <input type="text" name="item_name" class="form-control form-control-vj" placeholder="e.g. Steel Water Bottle, Black Earbuds" required>
+                            </div>
+                            
+                            <!-- Category -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Category *</label>
+                                <select name="category" class="form-select form-control-vj" required>
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="Wallet">Wallet</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="Calculator">Calculator</option>
+                                    <option value="Water Bottle">Water Bottle</option>
+                                    <option value="Notebook">Notebook</option>
+                                    <option value="Earphones">Earphones</option>
+                                    <option value="ID Card">ID Card</option>
+                                    <option value="Keys">Keys</option>
+                                    <option value="Umbrella">Umbrella</option>
+                                    <option value="Lunch Box">Lunch Box</option>
+                                    <option value="Charger">Charger</option>
+                                    <option value="Bag">Bag</option>
+                                    <option value="Watch">Watch</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label class="form-label font-weight-bold">Description / Where you found it</label>
+                            <textarea name="description" class="form-control form-control-vj" rows="3" placeholder="Provide extra details such as color, markings, specific brand, or what you did with the item (e.g. handed over to the driver/admin)."></textarea>
+                        </div>
+
+                        <h4 class="mb-4 mt-5 text-primary border-bottom pb-2"><i class="bi bi-bus-front"></i> Bus Route & Location Found</h4>
+                        
+                        <div class="row">
+                            <!-- Bus Route -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Bus Route *</label>
+                                <select name="bus_route" class="form-select form-control-vj" required>
+                                    <option value="" disabled selected>Select VJ Bus Route</option>
+                                    <optgroup label="Regular Routes">
+                                        <option value="Route-1 (Patancheru)">Route-1 (Patancheru)</option>
+                                        <option value="Route-2 (LB Nagar)">Route-2 (LB Nagar)</option>
+                                        <option value="Route-2A (Nagole)">Route-2A (Nagole)</option>
+                                        <option value="Route-3 (Yusufguda)">Route-3 (Yusufguda)</option>
+                                        <option value="Route-4A (ECIL)">Route-4A (ECIL)</option>
+                                        <option value="Route-4B (ECIL)">Route-4B (ECIL)</option>
+                                        <option value="Route-5 (Attapur)">Route-5 (Attapur)</option>
+                                        <option value="Route-6 (VST)">Route-6 (VST)</option>
+                                        <option value="Route-7 (Kukatpally)">Route-7 (Kukatpally)</option>
+                                        <option value="Route-8 (Old Alwal)">Route-8 (Old Alwal)</option>
+                                        <option value="Route-9 (KPHB via Nizampet)">Route-9 (KPHB via Nizampet)</option>
+                                        <option value="Route-10 (Manikonda)">Route-10 (Manikonda)</option>
+                                        <option value="Route-11 (HCU)">Route-11 (HCU)</option>
+                                    </optgroup>
+                                    <optgroup label="Special Routes">
+                                        <option value="Route-S-1 (Patancheru)">Route-S-1 (Patancheru)</option>
+                                        <option value="Route-S-2/1 (LB Nagar)">Route-S-2/1 (LB Nagar)</option>
+                                        <option value="Route-S-2/2 (LB Nagar)">Route-S-2/2 (LB Nagar)</option>
+                                        <option value="Route-S-3/1 (Nagole via Begumpet)">Route-S-3/1 (Nagole via Begumpet)</option>
+                                        <option value="Route-S-3/2 (Nagole via Tadbund)">Route-S-3/2 (Nagole via Tadbund)</option>
+                                        <option value="Route-S-4 (Yusufguda)">Route-S-4 (Yusufguda)</option>
+                                        <option value="Route-S-5 (Attapur)">Route-S-5 (Attapur)</option>
+                                        <option value="Route-S-6 (VST)">Route-S-6 (VST)</option>
+                                        <option value="Route-S-7 (Kukatpally)">Route-S-7 (Kukatpally)</option>
+                                        <option value="Route-S-8 (KPHB via Nizampet)">Route-S-8 (KPHB via Nizampet)</option>
+                                        <option value="Route-S-9 (Manikonda)">Route-S-9 (Manikonda)</option>
+                                        <option value="Route-S-10 (HCU)">Route-S-10 (HCU)</option>
+                                    </optgroup>
+                                    <optgroup label="General Routes">
+                                        <option value="Route-41 (ECIL)">Route-41 (ECIL)</option>
+                                        <option value="Route-42 (ECIL)">Route-42 (ECIL)</option>
+                                        <option value="Route-43 (ECIL)">Route-43 (ECIL)</option>
+                                        <option value="Route-44 (ECIL)">Route-44 (ECIL)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            
+                            <!-- Seat Number -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Seat Number (Optional)</label>
+                                <input type="text" name="seat_number" class="form-control form-control-vj" placeholder="e.g. Back row, seat 12">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Approx Time -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Approximate Time Found</label>
+                                <input type="time" name="time" class="form-control form-control-vj">
+                            </div>
+                            
+                            <!-- Date -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Date Found</label>
+                                <input type="date" name="date" class="form-control form-control-vj" max="2026-12-31">
+                            </div>
+                        </div>
+
+                        <!-- Image upload and preview -->
+                        <div class="mb-3 mt-4">
+                            <label class="form-label font-weight-bold d-block">Upload Photo of Found Item (Optional)</label>
+                            <input type="file" id="item-image" name="image" class="d-none" accept="image/png, image/jpeg, image/jpg">
+                            <div class="image-preview-box" id="image-preview">
+                                <i class="bi bi-cloud-arrow-up display-4 opacity-50"></i>
+                                <p class="mt-2 text-muted mb-1">Click to upload an image from your device</p>
+                                <p class="small text-muted opacity-75">Max file size: 5 MB (PNG, JPG, JPEG only)</p>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-4 mt-5 text-primary border-bottom pb-2"><i class="bi bi-person-badge"></i> Finder Contact Details</h4>
+                        
+                        <div class="row">
+                            <!-- Finder Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Finder Name *</label>
+                                <input type="text" name="finder_name" class="form-control form-control-vj" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <!-- Roll Number -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Roll Number *</label>
+                                <input type="text" name="roll_number" class="form-control form-control-vj" placeholder="e.g. 21D71A04XX" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Mobile -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Mobile Number *</label>
+                                <input type="tel" name="mobile" class="form-control form-control-vj" placeholder="Enter 10-digit number" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label font-weight-bold">Email Address *</label>
+                                <input type="email" name="email" class="form-control form-control-vj" placeholder="e.g. finder@vnrvjiet.in" required>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-end">
+                            <button type="submit" class="btn btn-vj-accent btn-lg w-100 py-3">
+                                <i class="bi bi-check-circle-fill"></i> Submit Found Report
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="notification-toast-container"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Init found form listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            initReportForm('found');
+        });
+    </script>
+</body>
+</html>

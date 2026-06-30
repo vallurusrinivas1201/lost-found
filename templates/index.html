@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ Bus - Lost & Found</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Premium VJ Bus Header -->
+    <header class="vj-header">
+        <div class="container">
+            <h1><i class="bi bi-bus-front-fill"></i> VJ Bus Lost & Found</h1>
+            <p>Report and claim items lost or found inside college buses. Let's keep our VNRVJIET transit community safe and organized!</p>
+            
+            <div class="mt-4 d-flex justify-content-center gap-3">
+                <a href="/report-lost" class="btn-vj-accent">
+                    <i class="bi bi-search"></i> Report Lost Item
+                </a>
+                <a href="/report-found" class="btn-vj-primary border border-light">
+                    <i class="bi bi-box-seam"></i> Report Found Item
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Live Stats Panel -->
+        <section class="stats-container">
+            <div class="row">
+                <div class="col-md-4 stat-item">
+                    <div class="stat-value" id="stat-lost-val">0</div>
+                    <div class="stat-label">Active Lost Reports</div>
+                </div>
+                <div class="col-md-4 stat-item">
+                    <div class="stat-value" id="stat-found-val">0</div>
+                    <div class="stat-label">Unclaimed Found Items</div>
+                </div>
+                <div class="col-md-4 stat-item">
+                    <div class="stat-value" id="stat-returned-val">0</div>
+                    <div class="stat-label">Returned to Owner</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filters Section -->
+        <section class="search-filter-card" id="search-filters-section">
+            <h5 class="mb-3 text-primary"><i class="bi bi-funnel-fill"></i> Search & Filters</h5>
+            <div class="row g-3">
+                <!-- Search bar -->
+                <div class="col-md-4">
+                    <label class="form-label small font-weight-bold">Search Keywords</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                        <input type="text" id="search-input" class="form-control form-control-vj border-start-0 ps-0" placeholder="Search by name, roll, route...">
+                    </div>
+                </div>
+                
+                <!-- Bus Route Filter -->
+                <div class="col-md-3">
+                    <label class="form-label small font-weight-bold">Bus Route</label>
+                    <select id="filter-route" class="form-select form-control-vj">
+                        <option value="all">All Routes</option>
+                        <optgroup label="Regular Routes">
+                            <option value="Route-1 (Patancheru)">Route-1 (Patancheru)</option>
+                            <option value="Route-2 (LB Nagar)">Route-2 (LB Nagar)</option>
+                            <option value="Route-2A (Nagole)">Route-2A (Nagole)</option>
+                            <option value="Route-3 (Yusufguda)">Route-3 (Yusufguda)</option>
+                            <option value="Route-4A (ECIL)">Route-4A (ECIL)</option>
+                            <option value="Route-4B (ECIL)">Route-4B (ECIL)</option>
+                            <option value="Route-5 (Attapur)">Route-5 (Attapur)</option>
+                            <option value="Route-6 (VST)">Route-6 (VST)</option>
+                            <option value="Route-7 (Kukatpally)">Route-7 (Kukatpally)</option>
+                            <option value="Route-8 (Old Alwal)">Route-8 (Old Alwal)</option>
+                            <option value="Route-9 (KPHB via Nizampet)">Route-9 (KPHB via Nizampet)</option>
+                            <option value="Route-10 (Manikonda)">Route-10 (Manikonda)</option>
+                            <option value="Route-11 (HCU)">Route-11 (HCU)</option>
+                        </optgroup>
+                        <optgroup label="Special Routes">
+                            <option value="Route-S-1 (Patancheru)">Route-S-1 (Patancheru)</option>
+                            <option value="Route-S-2/1 (LB Nagar)">Route-S-2/1 (LB Nagar)</option>
+                            <option value="Route-S-2/2 (LB Nagar)">Route-S-2/2 (LB Nagar)</option>
+                            <option value="Route-S-3/1 (Nagole via Begumpet)">Route-S-3/1 (Nagole via Begumpet)</option>
+                            <option value="Route-S-3/2 (Nagole via Tadbund)">Route-S-3/2 (Nagole via Tadbund)</option>
+                            <option value="Route-S-4 (Yusufguda)">Route-S-4 (Yusufguda)</option>
+                            <option value="Route-S-5 (Attapur)">Route-S-5 (Attapur)</option>
+                            <option value="Route-S-6 (VST)">Route-S-6 (VST)</option>
+                            <option value="Route-S-7 (Kukatpally)">Route-S-7 (Kukatpally)</option>
+                            <option value="Route-S-8 (KPHB via Nizampet)">Route-S-8 (KPHB via Nizampet)</option>
+                            <option value="Route-S-9 (Manikonda)">Route-S-9 (Manikonda)</option>
+                            <option value="Route-S-10 (HCU)">Route-S-10 (HCU)</option>
+                        </optgroup>
+                        <optgroup label="General Routes">
+                            <option value="Route-41 (ECIL)">Route-41 (ECIL)</option>
+                            <option value="Route-42 (ECIL)">Route-42 (ECIL)</option>
+                            <option value="Route-43 (ECIL)">Route-43 (ECIL)</option>
+                            <option value="Route-44 (ECIL)">Route-44 (ECIL)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <!-- Category Filter -->
+                <div class="col-md-3">
+                    <label class="form-label small font-weight-bold">Category</label>
+                    <select id="filter-category" class="form-select form-control-vj">
+                        <option value="all">All Categories</option>
+                        <option value="Wallet">Wallet</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Calculator">Calculator</option>
+                        <option value="Water Bottle">Water Bottle</option>
+                        <option value="Notebook">Notebook</option>
+                        <option value="Earphones">Earphones</option>
+                        <option value="ID Card">ID Card</option>
+                        <option value="Keys">Keys</option>
+                        <option value="Umbrella">Umbrella</option>
+                        <option value="Lunch Box">Lunch Box</option>
+                        <option value="Charger">Charger</option>
+                        <option value="Bag">Bag</option>
+                        <option value="Watch">Watch</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <!-- Status Filter -->
+                <div class="col-md-2">
+                    <label class="form-label small font-weight-bold">Status</label>
+                    <select id="filter-status" class="form-select form-control-vj">
+                        <option value="all">All Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Claim Requested">Claim Requested</option>
+                        <option value="Returned">Returned</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Deck -->
+        <section class="text-center">
+            <!-- Navigation Switch Tabs -->
+            <div class="nav-pills-vj">
+                <a class="nav-link active" id="tab-lost" href="#"><i class="bi bi-search"></i> Lost Items</a>
+                <a class="nav-link" id="tab-found" href="#"><i class="bi bi-box-seam"></i> Found Items</a>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="spinner-vj" style="display: none;"></div>
+            
+            <!-- Cards list -->
+            <div class="row g-4 text-start mt-3" id="items-list-container">
+                <!-- Dynamically populated -->
+            </div>
+            
+            <!-- Pagination container -->
+            <div id="pagination-container" class="mt-4">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+        
+        <div class="text-center mt-5">
+            <a href="/admin" class="btn btn-vj-secondary btn-sm">
+                <i class="bi bi-shield-lock"></i> Moderator Dashboard
+            </a>
+        </div>
+    </main>
+
+    <!-- Claim Submission Modal -->
+    <div class="modal fade" id="claimModal" tabindex="-1" aria-labelledby="claimModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-vj">
+                <div class="modal-header modal-header-vj">
+                    <h5 class="modal-title" id="claimModalLabel">Claim Found Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="claim-form">
+                        <div class="mb-3">
+                            <label for="claim-name" class="form-label font-weight-bold">Full Name *</label>
+                            <input type="text" class="form-control form-control-vj" id="claim-name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-roll" class="form-label font-weight-bold">Roll Number *</label>
+                            <input type="text" class="form-control form-control-vj" id="claim-roll" required placeholder="Enter student roll number (e.g. 21D71A05XX)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-phone" class="form-label font-weight-bold">Phone Number *</label>
+                            <input type="tel" class="form-control form-control-vj" id="claim-phone" required placeholder="Enter contact phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-reason" class="form-label font-weight-bold">Reason & Identification *</label>
+                            <textarea class="form-control form-control-vj" id="claim-reason" rows="3" required placeholder="Describe details to verify this item belongs to you (e.g., color, serial numbers, content details)"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 p-3 bg-light rounded-bottom">
+                    <button type="button" class="btn btn-vj-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-vj-accent" onclick="submitClaim()">Submit Claim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="notification-toast-container"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- SocketIO client library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Start homepage integrations
+        document.addEventListener('DOMContentLoaded', () => {
+            initHomepage();
+        });
+    </script>
+</body>
+</html>

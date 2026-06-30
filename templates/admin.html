@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Dashboard - VJ Bus Lost & Found</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header class="vj-header">
+        <div class="container">
+            <h1><i class="bi bi-shield-lock-fill"></i> Moderator Dashboard</h1>
+            <p>Admin and moderator tools for the VJ Bus Lost & Found module. Approve claims, reject fake reports, and manage all postings.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="/" class="btn-vj-secondary"><i class="bi bi-arrow-left"></i> Return to Homepage</a>
+            <h5 class="text-muted m-0"><i class="bi bi-person-check-fill text-primary"></i> Authorized Admin Access</h5>
+        </div>
+
+        <!-- Filter pane -->
+        <section class="search-filter-card">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label small font-weight-bold">Search Keywords</label>
+                    <input type="text" id="admin-search" class="form-control form-control-vj" placeholder="Search by item, category, roll, name...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small font-weight-bold">Filter Type</label>
+                    <select id="admin-filter-type" class="form-select form-control-vj">
+                        <option value="all">All Types</option>
+                        <option value="lost">Lost Reports</option>
+                        <option value="found">Found Reports</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small font-weight-bold">Filter Status</label>
+                    <select id="admin-filter-status" class="form-select form-control-vj">
+                        <option value="all">All Statuses</option>
+                        <option value="Open">Open</option>
+                        <option value="Claim Requested">Claim Requested</option>
+                        <option value="Returned">Returned</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+                <div class="col-md-2 text-end">
+                    <button class="btn btn-vj-primary w-100" onclick="loadAdminItems()"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Table -->
+        <section class="admin-table-card">
+            <div class="table-responsive">
+                <table class="table table-hover table-vj align-middle">
+                    <thead>
+                        <tr>
+                            <th width="5%" class="text-center">ID</th>
+                            <th width="8%" class="text-center">Photo</th>
+                            <th width="10%">Type</th>
+                            <th width="20%">Item Details</th>
+                            <th width="15%">Route & Seat</th>
+                            <th width="12%">Date & Time</th>
+                            <th width="15%">Reporter Details</th>
+                            <th width="10%">Status</th>
+                            <th width="15%">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Dynamically populated -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div id="admin-loading-spinner" class="spinner-vj" style="display: none;"></div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="notification-toast-container"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminDashboard();
+        });
+    </script>
+</body>
+</html>

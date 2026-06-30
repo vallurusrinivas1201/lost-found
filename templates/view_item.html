@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details - VJ Bus</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <header class="vj-header">
+        <div class="container">
+            <h1><i class="bi bi-info-circle-fill"></i> Report Details</h1>
+            <p>Review details of the reported item. If you found it or if it belongs to you, contact the reporter directly or submit a claim request.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="mb-4">
+            <a href="/" class="btn-vj-secondary"><i class="bi bi-arrow-left"></i> Back to Homepage</a>
+        </div>
+
+        <!-- Detail card structure -->
+        <div class="detail-card">
+            <!-- Spinner before load -->
+            <div id="details-spinner" class="spinner-vj"></div>
+            
+            <div id="details-content">
+                <!-- Javascript will render details here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Claim Submission Modal (same modal as index for claim operations on this page) -->
+    <div class="modal fade" id="claimModal" tabindex="-1" aria-labelledby="claimModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-vj">
+                <div class="modal-header modal-header-vj">
+                    <h5 class="modal-title" id="claimModalLabel">Claim Found Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="claim-form">
+                        <div class="mb-3">
+                            <label for="claim-name" class="form-label font-weight-bold">Full Name *</label>
+                            <input type="text" class="form-control form-control-vj" id="claim-name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-roll" class="form-label font-weight-bold">Roll Number *</label>
+                            <input type="text" class="form-control form-control-vj" id="claim-roll" required placeholder="Enter student roll number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-phone" class="form-label font-weight-bold">Phone Number *</label>
+                            <input type="tel" class="form-control form-control-vj" id="claim-phone" required placeholder="Enter contact phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="claim-reason" class="form-label font-weight-bold">Reason & Identification *</label>
+                            <textarea class="form-control form-control-vj" id="claim-reason" rows="3" required placeholder="Describe details to verify ownership"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 p-3 bg-light rounded-bottom">
+                    <button type="button" class="btn btn-vj-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-vj-accent" onclick="submitClaim()">Submit Claim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="notification-toast-container"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- Leaflet Map JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide spinner once loading starts
+            const spinner = document.getElementById('details-spinner');
+            if (spinner) spinner.style.display = 'none';
+            
+            initViewDetails({{ item_id }});
+        });
+    </script>
+</body>
+</html>
